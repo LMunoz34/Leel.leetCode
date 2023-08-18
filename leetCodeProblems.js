@@ -59,10 +59,10 @@
  * // @return {string[][]}
  */
 
-strs = ["eat","tea","tan","ate","nat","bat"]
-k = 4
+// strs = ["eat","tea","tan","ate","nat","bat"]
+// k = 4
 
-var groupAnagrams = function(strs) {
+// var groupAnagrams = function(strs) {
     // let anagrams = {};
 
     // for (let word of strs) {
@@ -80,20 +80,20 @@ var groupAnagrams = function(strs) {
     // return Object.values(anagrams);
 
 
-    if (strs.length === 0){
-        return [];
-    }
-    let wordSet = {};
-    // srtArray = [];
-    // index = 0;
+    // if (strs.length === 0){
+    //     return [];
+    // }
+    // let wordSet = {};
+    // // srtArray = [];
+    // // index = 0;
 
-    for (let i = 0; i<strs.length; i++){       
-        let sortedLetters = strs[i].split('').sort().join('');
-        if (!wordSet[sortedLetters]) {
-            wordSet[sortedLetters] = [];
-        }
-        wordSet[sortedLetters].push(strs[i]);
-    };
+    // for (let i = 0; i<strs.length; i++){       
+    //     let sortedLetters = strs[i].split('').sort().join('');
+    //     if (!wordSet[sortedLetters]) {
+    //         wordSet[sortedLetters] = [];
+    //     }
+    //     wordSet[sortedLetters].push(strs[i]);
+    // };
     // srtArray.sort();
     // let pairs = srtArray.map((value, index) => [value, strs[index]]);
     
@@ -126,7 +126,7 @@ var groupAnagrams = function(strs) {
     // //     index++;
     // //     wordArray = [];
     // // };
-    return Object.values(wordSet);
-};
+//     return Object.values(wordSet);
+// };
 
-console.log(groupAnagrams(strs));
+// console.log(groupAnagrams(strs));
