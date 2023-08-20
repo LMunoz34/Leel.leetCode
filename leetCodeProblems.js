@@ -1,16 +1,16 @@
-// function twoSum(nums, target) {
-//     let numDict = {};
-//     for (let i = 0; i < nums.length; i++) {
-//         let complement = target - nums[i];
-//         if (numDict.hasOwnProperty(complement)) {
-//             return [numDict[complement], i];
+// FUNCTION TWOSUM(NUMS, TARGET) {
+//     LET NUMDICT = {};
+//     FOR (LET I = 0; I < NUMS.LENGTH; I++) {
+//         LET COMPLEMENT = TARGET - NUMS[I];
+//         IF (NUMDICT.HASOWNPROPERTY(COMPLEMENT)) {
+//             RETURN [NUMDICT[COMPLEMENT], I];
 //         }
         
-//         numDict[nums[i]] = i;
-//         console.log(complement, numDict.hasOwnProperty(complement), i, numDict)
+//         NUMDICT[NUMS[I]] = I;
+//         CONSOLE.LOG(COMPLEMENT, NUMDICT.HASOWNPROPERTY(COMPLEMENT), I, NUMDICT)
         
 //     }
-//     return []; // This line is optional, as the problem states there will always be a solution.
+//     RETURN []; // THIS LINE IS OPTIONAL, AS THE PROBLEM STATES THERE WILL ALWAYS BE A SOLUTION.
 // }
 
 // // Test
@@ -130,3 +130,9 @@
 // };
 
 // console.log(groupAnagrams(strs));
+
+let AddNumbersArrowFunction = (a,b) => {
+    return a + b;
+}
+
+console.log(AddNumbersArrowFunction(1,2));
