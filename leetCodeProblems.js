@@ -131,8 +131,95 @@
 
 // console.log(groupAnagrams(strs));
 
-let AddNumbersArrowFunction = (a,b) => {
-    return a + b;
-}
+// let AddNumbersArrowFunction = (a,b) => {
+//     return a + b;
+// }
 
-console.log(AddNumbersArrowFunction(1,2));
+// console.log(AddNumbersArrowFunction(1,2));
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {number[]}
+//  */
+
+
+// var topKFrequent = function(nums, k) {
+    // let numSet = {};
+    // for (let num of nums) {
+    //     if (!numSet[num]) {
+    //         numSet[num] = 1;
+    //     } else {
+    //         numSet[num]++;
+    //     }
+    // }
+    // nums.forEach(num => {
+    //     if (!numSet[num]) {
+    //         numSet[num] = 1;
+    //     } else {
+    //         numSet[num]++;
+    //     }
+    // });
+    
+        // Convert numSet into an array of [num, frequency] pairs
+        // let sortedArray = Object.entries(numSet).sort((a, b) => b[1] - a[1]);
+        //return sortedArray;
+        // Return the first k entries, but only the numbers (not the counts)
+        // return sortedArray.slice(0, k).map(entry => Number(entry[0]));
+    // let numSet = {};
+    // for (let num of nums) {
+    //     if (!numSet[num]) {
+    //         numSet[num] = 0;
+    //     }
+    //     let count = numSet[num]
+    //     numSet[num] = count + 1;
+    // }
+    // return numSet;
+    
+//};
+
+
+// console.log(topKFrequent([1,1,1,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3], 3));
+
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// var productExceptSelf = function(nums) {
+//     let outputArray = []
+//     nums.forEach((num) => {
+//         let product = 1;
+//         nums.forEach((num2) => {
+//             if (num2 !== num) {
+//                 product *= num2;
+//             }
+//         });
+//         outputArray.push(product);
+//     });
+//     return outputArray;
+// }
+
+var productExceptSelf = function(nums) {
+    const n = nums.length;
+    let output = new Array(n).fill(1);
+
+    // Compute prefix products
+    let prefixProduct = 1;
+    for (let i = 1; i < n; i++) {
+        prefixProduct *= nums[i - 1];
+        output[i] *= prefixProduct;
+    }
+
+    // Compute suffix products
+    let suffixProduct = 1;
+    for (let i = n - 2; i >= 0; i--) {
+        suffixProduct *= nums[i + 1];
+        output[i] *= suffixProduct;
+    }
+
+    return output;
+};
+
+console.log(productExceptSelf([1,2,3,4,4]));
+console.log(productExceptSelf([-1,1,0,-3,3]));
