@@ -182,10 +182,10 @@
 // console.log(topKFrequent([1,1,1,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3], 3));
 
 
-// /**
-//  * @param {number[]} nums
-//  * @return {number[]}
-//  */
+// // /**
+// //  * @param {number[]} nums
+// //  * @return {number[]}
+// //  */
 // var productExceptSelf = function(nums) {
 //     let outputArray = []
 //     nums.forEach((num) => {
@@ -200,26 +200,78 @@
 //     return outputArray;
 // }
 
-var productExceptSelf = function(nums) {
-    const n = nums.length;
-    let output = new Array(n).fill(1);
+// var productExceptSelf = function(nums) {
+//     const n = nums.length;
+//     let output = new Array(n).fill(1);
 
-    // Compute prefix products
-    let prefixProduct = 1;
-    for (let i = 1; i < n; i++) {
-        prefixProduct *= nums[i - 1];
-        output[i] *= prefixProduct;
+//     // Compute prefix products
+//     let prefixProduct = 1;
+//     for (let i = 1; i < n; i++) {
+//         prefixProduct *= nums[i - 1];
+//         output[i] *= prefixProduct;
+//     }
+
+//     //Compute suffix products
+//     let suffixProduct = 1;
+//     for (let i = n - 2; i >= 0; i--) {
+//         suffixProduct *= nums[i + 1];
+//         output[i] *= suffixProduct;
+//     }
+
+//     return output;
+// };
+
+// console.log(productExceptSelf([1,2,3,4,4]));
+// console.log(productExceptSelf([-1,1,0,-3,3]));
+
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function(board) {
+    const n = board.length;
+    const subBoxSize = Math.sqrt(n);
+    const rows = new Array(n).fill(0).map(() => new Array(n + 1).fill(0));
+    const cols = new Array(n).fill(0).map(() => new Array(n + 1).fill(0));
+    const subBoxes = new Array(n).fill(0).map(() => new Array(n + 1).fill(0));
+
+    for (let row = 0; row < n; row++) {
+        for (let col = 0; col < n; col++) {
+
+            if (board[row][col] === '.') {
+                continue;
+            }
+
+            const currentNumber = Number(board[row][col]);
+            const subBoxIndex = Math.floor(row / subBoxSize) * subBoxSize + Math.floor(col / subBoxSize);
+
+            if (rows[row][currentNumber] === 1) {
+                return false;
+            }
+            rows[row][currentNumber] = 1;
+
+            if (cols[col][currentNumber] === 1) {
+                return false;
+            }
+            cols[col][currentNumber] = 1;
+
+            if (subBoxes[subBoxIndex][currentNumber] === 1) {
+                return false;
+            }
+            subBoxes[subBoxIndex][currentNumber] = 1;
+        }
     }
 
-    // Compute suffix products
-    let suffixProduct = 1;
-    for (let i = n - 2; i >= 0; i--) {
-        suffixProduct *= nums[i + 1];
-        output[i] *= suffixProduct;
-    }
-
-    return output;
+    return true;
 };
 
-console.log(productExceptSelf([1,2,3,4,4]));
-console.log(productExceptSelf([-1,1,0,-3,3]));
+console.log(isValidSudoku([["5","3",".",".","7",".",".",".","."],
+                            ["6",".",".","1","9","5",".",".","."],
+                            [".","9","8",".",".",".",".","6","."],
+                            ["8",".",".",".","6",".",".",".","3"],
+                            ["4",".",".","8",".","3",".",".","1"],
+                            ["7",".",".",".","2",".",".",".","6"],
+                            [".","6",".",".",".",".","2","8","."],
+                            [".",".",".","4","1","9",".",".","5"],
+                            [".",".",".",".","8",".",".","7","9"]]));
